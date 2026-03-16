@@ -217,7 +217,9 @@ img {
 .quote-card,
 .contact-card,
 .map-card,
-.info-rail__card {
+.info-rail__card,
+.hero-photo,
+.gallery-card {
   position: relative;
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -260,6 +262,57 @@ img {
 .hero-card--dark p,
 .hero-card--dark a {
   color: rgba(247, 241, 231, 0.9);
+}
+
+.hero-photo {
+  overflow: hidden;
+  min-height: 280px;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  background:
+    radial-gradient(circle at top, rgba(228, 106, 45, 0.16), transparent 40%),
+    linear-gradient(180deg, rgba(247, 241, 231, 0.9), rgba(236, 229, 219, 0.9));
+  padding: 22px;
+}
+
+.hero-photo__body {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(28, 26, 24, 0.82);
+  color: #f8f2e8;
+}
+
+.hero-photo__body span,
+.gallery-card__body span {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 10px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-photo__body strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.hero-photo__body p {
+  margin: 8px 0 0;
+  color: rgba(248, 242, 232, 0.84);
 }
 
 .stats {
@@ -305,6 +358,66 @@ img {
     linear-gradient(120deg, rgba(63, 76, 89, 0.08), rgba(63, 76, 89, 0)),
     rgba(255, 252, 247, 0.42);
   border-block: 1px solid rgba(44, 38, 32, 0.08);
+}
+
+.visuals {
+  padding-top: 24px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gallery-card {
+  overflow: hidden;
+}
+
+.gallery-card--featured {
+  grid-column: span 2;
+}
+
+.gallery-card__image {
+  aspect-ratio: 1 / 1;
+  background:
+    radial-gradient(circle at top, rgba(228, 106, 45, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(255, 250, 244, 0.9), rgba(240, 232, 219, 0.9));
+}
+
+.gallery-card--featured .gallery-card__image {
+  aspect-ratio: 1.35 / 1;
+}
+
+.gallery-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 22px;
+}
+
+.gallery-card__body {
+  padding: 20px 20px 22px;
+}
+
+.gallery-card__body h3,
+.gallery-note {
+  margin: 0;
+}
+
+.gallery-card__body p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.gallery-note {
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+.gallery-note a {
+  font-weight: 700;
+  color: var(--accent-deep);
 }
 
 .split-layout {
@@ -654,6 +767,7 @@ img {
 
   .catalog-grid,
   .category-showcase,
+  .gallery-grid,
   .feature-list,
   .service-grid,
   .contact-cards {
@@ -696,10 +810,15 @@ img {
   .quick-grid,
   .catalog-grid,
   .category-showcase,
+  .gallery-grid,
   .feature-list,
   .service-grid,
   .contact-cards {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-card--featured {
+    grid-column: span 1;
   }
 
   .product-line {

@@ -1,6 +1,7 @@
 import './style.css'
 import { catalog, categories, getCategoryStats } from './data/catalog'
 import { company } from './data/company'
+import { gallery } from './data/gallery'
 
 const app = document.querySelector<HTMLDivElement>('#app')
 
@@ -76,6 +77,14 @@ app.innerHTML = `
             <strong>${company.phones[0].label}</strong>
             <p><a href="tel:${company.phones[0].href}">${company.phones[0].display}</a></p>
           </div>
+          <article class="hero-photo">
+            <img src="${gallery[0].src}" alt="${gallery[0].title}" loading="eager" />
+            <div class="hero-photo__body">
+              <span>${gallery[0].label}</span>
+              <strong>${gallery[0].title}</strong>
+              <p>${gallery[0].description}</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -97,6 +106,47 @@ app.innerHTML = `
           <strong>${priceRange ? `${formatPrice(priceRange.min)} - ${formatPrice(priceRange.max)}` : 'Під запит'}</strong>
           <p>Ціни з ПДВ у гривнях; для окремих позицій передбачено уточнення по запиту.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section visuals">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Фотографії продукції</p>
+            <h2>Реальні візуали для сучасної подачі каталогу</h2>
+          </div>
+          <p>
+            Додав на сайт фото виробів і техніки, щоб сторінка виглядала живіше й одразу
+            показувала, з якою продукцією працює завод.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          ${gallery
+            .map(
+              (item, index) => `
+                <article class="gallery-card ${index === 0 ? 'gallery-card--featured' : ''}">
+                  <div class="gallery-card__image">
+                    <img src="${item.src}" alt="${item.title}" loading="lazy" />
+                  </div>
+                  <div class="gallery-card__body">
+                    <span>${item.label}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                  </div>
+                </article>
+              `,
+            )
+            .join('')}
+        </div>
+
+        <p class="gallery-note">
+          Візуали для оформлення взято з відкритих сторінок постачальників і каталогів:
+          <a href="https://kievstroy.org/" target="_blank" rel="noreferrer">kievstroy.org</a>
+          та
+          <a href="https://uabeton.com.ua/" target="_blank" rel="noreferrer">uabeton.com.ua</a>.
+        </p>
       </div>
     </section>
 

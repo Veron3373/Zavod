@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  base: '/Zavod/',
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.ts'],

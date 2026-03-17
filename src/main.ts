@@ -23,6 +23,12 @@ const mapCoords = {
   lng: 28.48389620346503,
 }
 
+const assetBase = import.meta.env.BASE_URL
+
+function assetPath(path: string) {
+  return `${assetBase}${path.replace(/^\/+/, '')}`
+}
+
 let leafletLoader: Promise<NonNullable<typeof window.L>> | null = null
 
 function loadLeaflet() {
@@ -177,13 +183,13 @@ const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
 
 // ===== PRODUCT IMAGES MAP =====
 const productImages: Record<string, string> = {
-  'Панелі перекриття': '/images/products/paneli-perekryttya.jpg',
-  'Перемички залізобетонні': '/images/products/peremychky.jpg',
-  'Плити плоскі': '/images/products/plyty-ploski.jpg',
-  'Плити дорожні': '/images/products/plyty-dorozhni.jpg',
-  'Сходові площадки': '/images/products/skhodovi-ploschadky.jpg',
-  'Бордюр, поребрик': '/images/products/bordyur.jpg',
-  'Плита огорожі': '/images/products/plyta-ogorozhi.jpg',
+  'Панелі перекриття': assetPath('/images/products/paneli-perekryttya.jpg'),
+  'Перемички залізобетонні': assetPath('/images/products/peremychky.jpg'),
+  'Плити плоскі': assetPath('/images/products/plyty-ploski.jpg'),
+  'Плити дорожні': assetPath('/images/products/plyty-dorozhni.jpg'),
+  'Сходові площадки': assetPath('/images/products/skhodovi-ploschadky.jpg'),
+  'Бордюр, поребрик': assetPath('/images/products/bordyur.jpg'),
+  'Плита огорожі': assetPath('/images/products/plyta-ogorozhi.jpg'),
 }
 
 const productIcons: Record<string, string> = {
@@ -1235,7 +1241,7 @@ function render() {
         </div>
         <div class="hero__visual">
           <div class="hero__img-wrapper">
-            <img src="/images/products/paneli-perekryttya.jpg" alt="Виробництво залізобетонних виробів — плити перекриття ПрАТ ОЗ ЗБВіК Вінниця" loading="eager" />
+            <img src="${assetPath('/images/products/paneli-perekryttya.jpg')}" alt="Виробництво залізобетонних виробів — плити перекриття ПрАТ ОЗ ЗБВіК Вінниця" loading="eager" />
           </div>
           <div class="hero__stats">
             <div class="hero__stat">

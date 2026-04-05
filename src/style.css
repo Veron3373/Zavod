@@ -473,7 +473,7 @@ h4 {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .burger {
     display: flex;
   }

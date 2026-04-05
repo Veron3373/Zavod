@@ -909,9 +909,6 @@ function render() {
             <div class="hero__gallery-item">
               <img src="${heroImages[1]}" alt="Завод ЗБВіК" width="400" height="200" loading="eager" />
             </div>
-            <div class="hero__gallery-item">
-              <img src="${heroImages[2]}" alt="Продукція заводу" width="400" height="200" loading="eager" />
-            </div>
           </div>
         </div>
       </div>

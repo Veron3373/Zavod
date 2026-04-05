@@ -1330,7 +1330,7 @@ function render() {
         </div>
         <div class="hero__visual">
           <div class="hero__img-wrapper">
-            <img src="${assetPath('/images/products/paneli-perekryttya.webp')}" alt="Виробництво залізобетонних виробів — плити перекриття ПрАТ ОЗ ЗБВіК Вінниця" width="600" height="600" loading="eager" decoding="async" fetchpriority="high" />
+            <img src="${assetPath('/images/hero/hero-main.webp')}" alt="Виробництво залізобетонних виробів — ПрАТ ОЗ ЗБВіК Вінниця" width="600" height="538" loading="eager" decoding="async" fetchpriority="high" />
           </div>
           <div class="hero__stats">
             <div class="hero__stat">

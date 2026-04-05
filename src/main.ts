@@ -784,9 +784,9 @@ function formatPrice(p: number | null): string {
 
 // ===== HERO IMAGES =====
 const heroImages = [
-  assetPath('/images/hero/hero-bg-1.png'),
-  assetPath('/images/hero/factory-1.jpg'),
-  assetPath('/images/hero/factory-2.jpg'),
+  assetPath('/images/hero/hero-bg-1.webp'),
+  assetPath('/images/hero/factory-1.webp'),
+  assetPath('/images/hero/factory-2.webp'),
 ]
 
 // ===== SHOWCASE IMAGES =====

@@ -472,7 +472,8 @@ h4 {
 }
 .hero__img-wrapper img {
   width: 100%;
-  height: 400px;
+  height: auto;
+  aspect-ratio: 600 / 538;
   object-fit: cover;
 }
 .hero__img-wrapper::after {
@@ -534,7 +535,7 @@ h4 {
     order: -1;
   }
   .hero__img-wrapper img {
-    height: 250px;
+    height: auto;
   }
   .hero__stats {
     grid-template-columns: repeat(3, 1fr);

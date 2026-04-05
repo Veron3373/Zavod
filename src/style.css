@@ -425,7 +425,7 @@ h4 {
 }
 .nav__cta {
   background: var(--clr-accent) !important;
-  color: var(--clr-dark) !important;
+  color: #fff !important;
   font-weight: 700;
   border-radius: 50px;
   padding: 10px 24px !important;
@@ -694,8 +694,8 @@ h4 {
 }
 .hero__gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 16px;
 }
 .hero__gallery-item {
@@ -709,7 +709,7 @@ h4 {
   transform: translateY(-8px);
 }
 .hero__gallery-item:nth-child(1) {
-  grid-row: span 2;
+  display: none;
 }
 .hero__gallery-item:nth-child(1) img {
   height: 100%;

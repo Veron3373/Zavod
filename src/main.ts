@@ -36,6 +36,14 @@ function loadLeaflet() {
   if (leafletLoader) return leafletLoader
 
   leafletLoader = new Promise((resolve, reject) => {
+    // Lazy-load Leaflet CSS only when map is needed
+    if (!document.querySelector('link[href*="leaflet"]')) {
+      const css = document.createElement('link')
+      css.rel = 'stylesheet'
+      css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+      document.head.append(css)
+    }
+
     const script = document.createElement('script')
     script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
     script.async = true
@@ -1250,10 +1258,15 @@ function getProductCategories(): ProductCategory[] {
 }
 
 // ===== ESCAPE HTML =====
+const escMap: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+}
 function esc(s: string): string {
-  const el = document.createElement('span')
-  el.textContent = s
-  return el.innerHTML
+  return s.replace(/[&<>"']/g, (c) => escMap[c])
 }
 
 // ===== FORMAT PRICE =====
@@ -1397,7 +1410,7 @@ function render() {
                 <p class="product-card__desc">${esc(cat.desc)}</p>
                 ${
                   cat.priceFrom !== null
-                    ? `<div class="product-card__price">від ${formatPrice(cat.priceFrom)}${cat.priceTo !== null && cat.priceTo !== cat.priceFrom ? ` до ${formatPrice(cat.priceTo)}` : ''} <span>/ ${cat.name.includes('Бетон') ? 'м³' : 'шт'}</span></div>`
+                    ? `<div class="product-card__price">від ${formatPrice(cat.priceFrom)} <span>/ ${cat.name.includes('Бетон') ? 'м³' : 'шт'}</span></div>`
                     : `<div class="product-card__price">За запитом</div>`
                 }
               </div>
@@ -1565,11 +1578,17 @@ function render() {
 
 // ===== INTERACTIONS =====
 function initInteractions() {
-  // Header scroll
+  // Header scroll + scroll-top (single passive listener)
   const header = document.getElementById('header')
-  window.addEventListener('scroll', () => {
-    header?.classList.toggle('header--scrolled', window.scrollY > 50)
-  })
+  const scrollBtn = document.getElementById('scrollTop')
+  window.addEventListener(
+    'scroll',
+    () => {
+      header?.classList.toggle('header--scrolled', window.scrollY > 50)
+      scrollBtn?.classList.toggle('visible', window.scrollY > 600)
+    },
+    { passive: true },
+  )
   // Trigger once on load
   header?.classList.toggle('header--scrolled', window.scrollY > 50)
 
@@ -1676,11 +1695,6 @@ function initInteractions() {
     })
   })
 
-  // Scroll top button
-  const scrollBtn = document.getElementById('scrollTop')
-  window.addEventListener('scroll', () => {
-    scrollBtn?.classList.toggle('visible', window.scrollY > 600)
-  })
   scrollBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   })

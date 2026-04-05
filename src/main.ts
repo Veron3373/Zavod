@@ -785,8 +785,7 @@ function formatPrice(p: number | null): string {
 // ===== HERO IMAGES =====
 const heroImages = [
   assetPath('/images/hero/hero-bg-1.webp'),
-  assetPath('/images/hero/factory-1.webp'),
-  assetPath('/images/hero/factory-2.webp'),
+  assetPath('/images/hero/hero-main.webp'),
 ]
 
 // ===== SHOWCASE IMAGES =====
@@ -1079,7 +1078,6 @@ function render() {
                 <th scope="col">Марка</th>
                 <th scope="col">Характеристика</th>
                 <th scope="col">Од.</th>
-                <th scope="col">Ціна з ПДВ</th>
               </tr>
             </thead>
             <tbody id="priceBody"></tbody>
@@ -1319,7 +1317,6 @@ function initInteractions() {
         <td><strong>${esc(item.name)}</strong></td>
         <td>${esc(item.spec)}</td>
         <td>${esc(item.unit)}</td>
-        <td class="price-cell">${item.price !== null ? formatPrice(item.price) : esc(item.note || 'За запитом')}</td>
       </tr>`,
       )
       .join('')

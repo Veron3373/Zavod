@@ -697,7 +697,7 @@ h4 {
 .hero__gallery {
   display: grid;
   grid-template-columns: 1fr;
-/*   grid-template-rows: 1fr 1fr; */
+  /*   grid-template-rows: 1fr 1fr; */
   gap: 16px;
 }
 .hero__gallery-item {
@@ -884,7 +884,15 @@ h4 {
   overflow: hidden;
 }
 .section--light {
-  background: var(--clr-bg);
+  background:
+    linear-gradient(135deg, rgba(232, 166, 58, 0.03) 0%, transparent 50%),
+    linear-gradient(rgba(26, 26, 46, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 46, 0.03) 1px, transparent 1px), var(--clr-bg);
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px,
+    100% 100%;
   color: var(--clr-text);
 }
 .section--dark {

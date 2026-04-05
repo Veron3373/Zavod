@@ -969,7 +969,12 @@ function render() {
             <h3 class="about-card__title">Доставка</h3>
             <p class="about-card__text">Власний автотранспорт для доставки по Вінницькій області та Україні.</p>
           </div>
-          <div class="about-card about-card--wide reveal delay-5">
+          <div class="about-card about-card--highlight reveal delay-5">
+            <div class="about-card__icon">🔬</div>
+            <h3 class="about-card__title">Власна лабораторія</h3>
+            <p class="about-card__text">Випробування міцності, морозостійкості та водонепроникності кожної партії. Сертифікована продукція згідно ДСТУ.</p>
+          </div>
+          <div class="about-card about-card--wide reveal delay-6">
             <div class="about-card__icon">🏗️</div>
             <h3 class="about-card__title">Комплектація об'єкта</h3>
             <p class="about-card__text">Плити, блоки, перемички, сходи, бордюри — все для будівництва в одному замовленні. Індивідуальний прорахунок під ваш проект.</p>
@@ -1035,7 +1040,7 @@ function render() {
     </section>
 
     <!-- CTA SECTION -->
-    <section class="cta">
+    <section class="cta" style="--section-bg-image:url('${heroImages[0]}')">
       <div class="cta__bg-shape cta__bg-shape--1"></div>
       <div class="cta__bg-shape cta__bg-shape--2"></div>
       <div class="container">

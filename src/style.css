@@ -697,7 +697,7 @@ h4 {
 .hero__gallery {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+/*   grid-template-rows: 1fr 1fr; */
   gap: 16px;
 }
 .hero__gallery-item {

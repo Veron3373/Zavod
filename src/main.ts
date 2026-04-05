@@ -1172,21 +1172,57 @@ interface ProductCategory {
   priceTo: number | null
 }
 
+// Categories to merge into a single card
+const mergeGroups: Record<string, string[]> = {
+  'Бетон на міксер': ['Бетон на міксер (Відсів П-3)', 'Бетон на міксер (Пісок П-3)'],
+}
+const mergedChildren = new Set(Object.values(mergeGroups).flat())
+
 function getProductCategories(): ProductCategory[] {
-  return categories.map((cat) => {
-    const items = priceData.filter((i) => i.category === cat && i.price !== null)
-    const prices = items.map((i) => i.price!).filter((p) => p > 0)
-    const minPrice = prices.length ? Math.min(...prices) : null
-    const maxPrice = prices.length ? Math.max(...prices) : null
-    return {
-      name: cat,
-      image: productImages[cat] ?? null,
-      icon: productIcons[cat] ?? '🏗️',
-      desc: `${items.length} позицій у каталозі`,
-      priceFrom: minPrice,
-      priceTo: maxPrice,
+  const result: ProductCategory[] = []
+  const handled = new Set<string>()
+
+  for (const cat of categories) {
+    if (handled.has(cat)) continue
+
+    // Check if this category is part of a merge group
+    const groupName = Object.keys(mergeGroups).find((g) => mergeGroups[g].includes(cat))
+
+    if (groupName && !handled.has(groupName)) {
+      const children = mergeGroups[groupName]
+      children.forEach((c) => handled.add(c))
+      handled.add(groupName)
+
+      const items = priceData.filter((i) => children.includes(i.category) && i.price !== null)
+      const prices = items.map((i) => i.price!).filter((p) => p > 0)
+      const minPrice = prices.length ? Math.min(...prices) : null
+      const maxPrice = prices.length ? Math.max(...prices) : null
+
+      result.push({
+        name: groupName,
+        image: productImages[children[0]] ?? null,
+        icon: productIcons[children[0]] ?? '🏗️',
+        desc: `${items.length} позицій у каталозі`,
+        priceFrom: minPrice,
+        priceTo: maxPrice,
+      })
+    } else if (!mergedChildren.has(cat)) {
+      const items = priceData.filter((i) => i.category === cat && i.price !== null)
+      const prices = items.map((i) => i.price!).filter((p) => p > 0)
+      const minPrice = prices.length ? Math.min(...prices) : null
+      const maxPrice = prices.length ? Math.max(...prices) : null
+      result.push({
+        name: cat,
+        image: productImages[cat] ?? null,
+        icon: productIcons[cat] ?? '🏗️',
+        desc: `${items.length} позицій у каталозі`,
+        priceFrom: minPrice,
+        priceTo: maxPrice,
+      })
     }
-  })
+  }
+
+  return result
 }
 
 // ===== ESCAPE HTML =====
@@ -1587,12 +1623,14 @@ function initInteractions() {
     card.addEventListener('click', () => {
       const cat = (card as HTMLElement).dataset.category
       if (!cat) return
-      // Find and activate matching tab
-      const tab = tabs?.querySelector(`[data-tab="${cat}"]`) as HTMLElement | null
+      // If it's a merged group, activate the first child tab
+      const children = mergeGroups[cat]
+      const tabCat = children ? children[0] : cat
+      const tab = tabs?.querySelector(`[data-tab="${tabCat}"]`) as HTMLElement | null
       if (tab) {
         tabs?.querySelectorAll('.price-tab').forEach((t) => t.classList.remove('active'))
         tab.classList.add('active')
-        renderTable(cat)
+        renderTable(tabCat)
         document.getElementById('price')?.scrollIntoView({ behavior: 'smooth' })
       }
     })

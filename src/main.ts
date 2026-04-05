@@ -186,10 +186,23 @@ const productImages: Record<string, string> = {
   'Панелі перекриття': assetPath('/images/products/paneli-perekryttya.jpg'),
   'Перемички залізобетонні': assetPath('/images/products/peremychky.jpg'),
   'Плити плоскі': assetPath('/images/products/plyty-ploski.jpg'),
-  'Плити дорожні': assetPath('/images/products/plyty-dorozhni.jpg'),
+  'Плити дорожні': assetPath('/images/products/plyty-dorozhni.png'),
   'Сходові площадки': assetPath('/images/products/skhodovi-ploschadky.jpg'),
   'Бордюр, поребрик': assetPath('/images/products/bordyur.jpg'),
-  'Плита огорожі': assetPath('/images/products/plyta-ogorozhi.jpg'),
+  'Плита огорожі': assetPath('/images/products/plyta-ogorozhi.png'),
+  'Блоки фундаментні': assetPath('/images/products/bloky-fundamentni.png'),
+  'Бетон на міксер (Відсів П-3)': assetPath('/images/products/beton-mikser.png'),
+  'Бетон на міксер (Пісок П-3)': assetPath('/images/products/beton-mikser.png'),
+  Прогони: assetPath('/images/products/prohony.png'),
+  Лотки: assetPath('/images/products/lotky.png'),
+  'Стовпчики для огорожі': assetPath('/images/products/stovpchyky-ogorozhi.png'),
+  'Палі забивні залізобетонні': assetPath('/images/products/pali-zabyvni.png'),
+  'Сходові марші': assetPath('/images/products/skhodovi-marshi.jpg'),
+  'Фундаменти стрічкові': assetPath('/images/products/fundamenty-strichkovi.png'),
+  'Плита аеродромна': assetPath('/images/products/plyta-aerodromna.png'),
+  'Плита ребриста': assetPath('/images/products/plyta-rebrysta.png'),
+  'Кільця каналізаційні': assetPath('/images/products/kiltsia-kanalizatsiyni.png'),
+  'Вироби з арматури': assetPath('/images/products/vyroby-armatury.png'),
 }
 
 const productIcons: Record<string, string> = {
@@ -1156,6 +1169,7 @@ interface ProductCategory {
   icon: string
   desc: string
   priceFrom: number | null
+  priceTo: number | null
 }
 
 function getProductCategories(): ProductCategory[] {
@@ -1163,12 +1177,14 @@ function getProductCategories(): ProductCategory[] {
     const items = priceData.filter((i) => i.category === cat && i.price !== null)
     const prices = items.map((i) => i.price!).filter((p) => p > 0)
     const minPrice = prices.length ? Math.min(...prices) : null
+    const maxPrice = prices.length ? Math.max(...prices) : null
     return {
       name: cat,
       image: productImages[cat] ?? null,
       icon: productIcons[cat] ?? '🏗️',
       desc: `${items.length} позицій у каталозі`,
       priceFrom: minPrice,
+      priceTo: maxPrice,
     }
   })
 }
@@ -1321,7 +1337,7 @@ function render() {
                 <p class="product-card__desc">${esc(cat.desc)}</p>
                 ${
                   cat.priceFrom !== null
-                    ? `<div class="product-card__price">від ${formatPrice(cat.priceFrom)} <span>/ ${cat.name.includes('Бетон') ? 'м³' : 'шт'}</span></div>`
+                    ? `<div class="product-card__price">від ${formatPrice(cat.priceFrom)}${cat.priceTo !== null && cat.priceTo !== cat.priceFrom ? ` до ${formatPrice(cat.priceTo)}` : ''} <span>/ ${cat.name.includes('Бетон') ? 'м³' : 'шт'}</span></div>`
                     : `<div class="product-card__price">За запитом</div>`
                 }
               </div>
@@ -1356,7 +1372,6 @@ function render() {
                 <th>Марка / найменування</th>
                 <th>Характеристика / розмір</th>
                 <th>Од. виміру</th>
-                <th>Ціна з ПДВ, грн</th>
               </tr>
             </thead>
             <tbody id="priceBody"></tbody>
@@ -1549,7 +1564,6 @@ function initInteractions() {
         <td><strong>${esc(item.name)}</strong></td>
         <td>${esc(item.spec)}</td>
         <td>${esc(item.unit)}</td>
-        <td class="price-cell">${item.price !== null ? formatPrice(item.price) : esc(item.note) || 'За запитом'}</td>
       </tr>
     `,
       )

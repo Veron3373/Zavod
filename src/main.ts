@@ -940,7 +940,7 @@ function render() {
     </div>
 
     <!-- ABOUT -->
-    <section class="section section--light" id="about">
+    <section class="section section--light" id="about" style="--section-bg-image:url('${heroImages[0]}')">
       <div class="container">
         <div class="section__header reveal">
           <div class="section__badge">🏭 Про підприємство</div>
@@ -995,7 +995,7 @@ function render() {
     </div>
 
     <!-- PRODUCTS -->
-    <section class="section section--light" id="products">
+    <section class="section section--light" id="products" style="--section-bg-image:url('${heroImages[1]}')">
       <div class="container">
         <div class="section__header reveal">
           <div class="section__badge">📦 Наша продукція</div>

@@ -895,6 +895,20 @@ h4 {
     100% 100%;
   color: var(--clr-text);
 }
+.section--light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--section-bg-image) center / cover no-repeat;
+  opacity: 0.04;
+  filter: grayscale(1);
+  pointer-events: none;
+  z-index: 0;
+}
+.section--light > * {
+  position: relative;
+  z-index: 1;
+}
 .section--dark {
   background: var(--clr-dark);
   color: #fff;

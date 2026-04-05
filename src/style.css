@@ -523,8 +523,8 @@ h4 {
 /* ===== HERO — FULL-SCREEN CINEMATIC ===== */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: min(100vh, 900px);
+  min-height: min(100dvh, 900px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -611,7 +611,7 @@ h4 {
   z-index: 3;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 160px 24px 120px;
+  padding: 140px 24px 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;

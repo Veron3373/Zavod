@@ -183,26 +183,26 @@ const logoSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
 
 // ===== PRODUCT IMAGES MAP =====
 const productImages: Record<string, string> = {
-  'Панелі перекриття': assetPath('/images/products/paneli-perekryttya.jpg'),
-  'Перемички залізобетонні': assetPath('/images/products/peremychky.jpg'),
-  'Плити плоскі': assetPath('/images/products/plyty-ploski.jpg'),
-  'Плити дорожні': assetPath('/images/products/plyty-dorozhni.png'),
-  'Сходові площадки': assetPath('/images/products/skhodovi-ploschadky.jpg'),
-  'Бордюр, поребрик': assetPath('/images/products/bordyur.jpg'),
-  'Плита огорожі': assetPath('/images/products/plyta-ogorozhi.png'),
-  'Блоки фундаментні': assetPath('/images/products/bloky-fundamentni.png'),
-  'Бетон на міксер (Відсів П-3)': assetPath('/images/products/beton-mikser.png'),
-  'Бетон на міксер (Пісок П-3)': assetPath('/images/products/beton-mikser.png'),
-  Прогони: assetPath('/images/products/prohony.png'),
-  Лотки: assetPath('/images/products/lotky.png'),
-  'Стовпчики для огорожі': assetPath('/images/products/stovpchyky-ogorozhi.png'),
-  'Палі забивні залізобетонні': assetPath('/images/products/pali-zabyvni.png'),
-  'Сходові марші': assetPath('/images/products/skhodovi-marshi.jpg'),
-  'Фундаменти стрічкові': assetPath('/images/products/fundamenty-strichkovi.png'),
-  'Плита аеродромна': assetPath('/images/products/plyta-aerodromna.png'),
-  'Плита ребриста': assetPath('/images/products/plyta-rebrysta.png'),
-  'Кільця каналізаційні': assetPath('/images/products/kiltsia-kanalizatsiyni.png'),
-  'Вироби з арматури': assetPath('/images/products/vyroby-armatury.png'),
+  'Панелі перекриття': assetPath('/images/products/paneli-perekryttya.webp'),
+  'Перемички залізобетонні': assetPath('/images/products/peremychky.webp'),
+  'Плити плоскі': assetPath('/images/products/plyty-ploski.webp'),
+  'Плити дорожні': assetPath('/images/products/plyty-dorozhni.webp'),
+  'Сходові площадки': assetPath('/images/products/skhodovi-ploschadky.webp'),
+  'Бордюр, поребрик': assetPath('/images/products/bordyur.webp'),
+  'Плита огорожі': assetPath('/images/products/plyta-ogorozhi.webp'),
+  'Блоки фундаментні': assetPath('/images/products/bloky-fundamentni.webp'),
+  'Бетон на міксер (Відсів П-3)': assetPath('/images/products/beton-mikser.webp'),
+  'Бетон на міксер (Пісок П-3)': assetPath('/images/products/beton-mikser.webp'),
+  Прогони: assetPath('/images/products/prohony.webp'),
+  Лотки: assetPath('/images/products/lotky.webp'),
+  'Стовпчики для огорожі': assetPath('/images/products/stovpchyky-ogorozhi.webp'),
+  'Палі забивні залізобетонні': assetPath('/images/products/pali-zabyvni.webp'),
+  'Сходові марші': assetPath('/images/products/skhodovi-marshi.webp'),
+  'Фундаменти стрічкові': assetPath('/images/products/fundamenty-strichkovi.webp'),
+  'Плита аеродромна': assetPath('/images/products/plyta-aerodromna.webp'),
+  'Плита ребриста': assetPath('/images/products/plyta-rebrysta.webp'),
+  'Кільця каналізаційні': assetPath('/images/products/kiltsia-kanalizatsiyni.webp'),
+  'Вироби з арматури': assetPath('/images/products/vyroby-armatury.webp'),
 }
 
 const productIcons: Record<string, string> = {
@@ -1157,6 +1157,30 @@ const priceData: PriceItem[] = [
     price: 3565,
     note: '',
   },
+  {
+    category: 'Вироби з арматури',
+    name: 'Сітка цег. клад.',
+    spec: '',
+    unit: 'тн',
+    price: null,
+    note: 'За запитом',
+  },
+  {
+    category: 'Вироби з арматури',
+    name: '3 ВрІ 2000×380',
+    spec: 'Ячейка 80×80, вага 1,2',
+    unit: 'шт',
+    price: null,
+    note: 'За запитом',
+  },
+  {
+    category: 'Вироби з арматури',
+    name: 'Каркас плоский / просторовий',
+    spec: '',
+    unit: 'тн',
+    price: null,
+    note: 'За запитом',
+  },
 ]
 
 // ===== UNIQUE CATEGORIES =====
@@ -1193,8 +1217,8 @@ function getProductCategories(): ProductCategory[] {
       children.forEach((c) => handled.add(c))
       handled.add(groupName)
 
-      const items = priceData.filter((i) => children.includes(i.category) && i.price !== null)
-      const prices = items.map((i) => i.price!).filter((p) => p > 0)
+      const allItems = priceData.filter((i) => children.includes(i.category))
+      const prices = allItems.map((i) => i.price).filter((p): p is number => p !== null && p > 0)
       const minPrice = prices.length ? Math.min(...prices) : null
       const maxPrice = prices.length ? Math.max(...prices) : null
 
@@ -1202,20 +1226,20 @@ function getProductCategories(): ProductCategory[] {
         name: groupName,
         image: productImages[children[0]] ?? null,
         icon: productIcons[children[0]] ?? '🏗️',
-        desc: `${items.length} позицій у каталозі`,
+        desc: `${allItems.length} позицій у каталозі`,
         priceFrom: minPrice,
         priceTo: maxPrice,
       })
     } else if (!mergedChildren.has(cat)) {
-      const items = priceData.filter((i) => i.category === cat && i.price !== null)
-      const prices = items.map((i) => i.price!).filter((p) => p > 0)
+      const allItems = priceData.filter((i) => i.category === cat)
+      const prices = allItems.map((i) => i.price).filter((p): p is number => p !== null && p > 0)
       const minPrice = prices.length ? Math.min(...prices) : null
       const maxPrice = prices.length ? Math.max(...prices) : null
       result.push({
         name: cat,
         image: productImages[cat] ?? null,
         icon: productIcons[cat] ?? '🏗️',
-        desc: `${items.length} позицій у каталозі`,
+        desc: `${allItems.length} позицій у каталозі`,
         priceFrom: minPrice,
         priceTo: maxPrice,
       })
@@ -1293,7 +1317,7 @@ function render() {
         </div>
         <div class="hero__visual">
           <div class="hero__img-wrapper">
-            <img src="${assetPath('/images/products/paneli-perekryttya.jpg')}" alt="Виробництво залізобетонних виробів — плити перекриття ПрАТ ОЗ ЗБВіК Вінниця" loading="eager" />
+            <img src="${assetPath('/images/products/paneli-perekryttya.webp')}" alt="Виробництво залізобетонних виробів — плити перекриття ПрАТ ОЗ ЗБВіК Вінниця" width="600" height="600" loading="eager" decoding="async" fetchpriority="high" />
           </div>
           <div class="hero__stats">
             <div class="hero__stat">
@@ -1362,7 +1386,7 @@ function render() {
               <div class="product-card__img">
                 ${
                   cat.image
-                    ? `<img src="${cat.image}" alt="${esc(cat.name)} — купити у Вінниці, ПрАТ ОЗ ЗБВіК" loading="lazy" />
+                    ? `<img src="${cat.image}" alt="${esc(cat.name)} — купити у Вінниці, ПрАТ ОЗ ЗБВіК" width="600" height="400" loading="lazy" decoding="async" />
                      <div class="product-card__overlay"><span class="product-card__overlay-text">Переглянути прайс →</span></div>`
                     : `<div class="product-card__no-img">${cat.icon}</div>`
                 }
@@ -1590,9 +1614,9 @@ function initInteractions() {
   // Price tabs
   const tabs = document.getElementById('priceTabs')
   const body = document.getElementById('priceBody')
-  function renderTable(category: string) {
+  function renderTable(cats: string[]) {
     if (!body) return
-    const items = priceData.filter((i) => i.category === category)
+    const items = priceData.filter((i) => cats.includes(i.category))
     body.innerHTML = items
       .map(
         (item) => `
@@ -1607,7 +1631,7 @@ function initInteractions() {
   }
   // Initial render
   if (categories.length > 0) {
-    renderTable(categories[0])
+    renderTable([categories[0]])
   }
   tabs?.addEventListener('click', (e) => {
     const target = e.target as HTMLElement
@@ -1615,7 +1639,7 @@ function initInteractions() {
     tabs.querySelectorAll('.price-tab').forEach((t) => t.classList.remove('active'))
     target.classList.add('active')
     const cat = target.dataset.tab
-    if (cat) renderTable(cat)
+    if (cat) renderTable([cat])
   })
 
   // Product card click -> scroll to price
@@ -1623,16 +1647,25 @@ function initInteractions() {
     card.addEventListener('click', () => {
       const cat = (card as HTMLElement).dataset.category
       if (!cat) return
-      // If it's a merged group, activate the first child tab
+      // If it's a merged group, show all children
       const children = mergeGroups[cat]
-      const tabCat = children ? children[0] : cat
-      const tab = tabs?.querySelector(`[data-tab="${tabCat}"]`) as HTMLElement | null
-      if (tab) {
+      if (children) {
+        // Activate all child tabs
         tabs?.querySelectorAll('.price-tab').forEach((t) => t.classList.remove('active'))
-        tab.classList.add('active')
-        renderTable(tabCat)
-        document.getElementById('price')?.scrollIntoView({ behavior: 'smooth' })
+        children.forEach((c) => {
+          const tab = tabs?.querySelector(`[data-tab="${c}"]`) as HTMLElement | null
+          tab?.classList.add('active')
+        })
+        renderTable(children)
+      } else {
+        const tab = tabs?.querySelector(`[data-tab="${cat}"]`) as HTMLElement | null
+        if (tab) {
+          tabs?.querySelectorAll('.price-tab').forEach((t) => t.classList.remove('active'))
+          tab.classList.add('active')
+          renderTable([cat])
+        }
       }
+      document.getElementById('price')?.scrollIntoView({ behavior: 'smooth' })
     })
     ;(card as HTMLElement).style.cursor = 'pointer'
   })

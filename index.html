@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#1a3a5c" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ПрАТ "ОЗ ЗБВіК" — Завод залізобетонних виробів і конструкцій | Вінниця</title>
   <meta name="description"
@@ -11,16 +13,25 @@
   <meta name="keywords"
     content="залізобетонні вироби, ЗБВ, ЖБІ, плити перекриття, фундаментні блоки, ФБС, перемички, бетон, Вінниця, завод залізобетонних конструкцій, купити ЗБВ, залізобетон Вінниця, ПрАТ ОЗ ЗБВіК, будівельні матеріали Вінниця" />
   <meta name="robots" content="index, follow" />
+  <!-- Open Graph -->
   <meta property="og:title" content="ПрАТ ОЗ ЗБВіК — Завод залізобетонних виробів | Вінниця" />
   <meta property="og:description"
     content="Виробництво та продаж залізобетонних виробів і конструкцій. Плити перекриття, ФБС, перемички, бетон. Доставка по Вінницькій області та Україні." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="uk_UA" />
+  <meta property="og:url" content="https://zavodzbvk.pat.ua/Zavod/" />
+  <meta property="og:image" content="https://zavodzbvk.pat.ua/Zavod/images/products/bloky-fundamentni.webp" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="515" />
+  <meta property="og:site_name" content="ПрАТ ОЗ ЗБВіК" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ПрАТ ОЗ ЗБВіК — Завод залізобетонних виробів | Вінниця" />
+  <meta name="twitter:description" content="Виробництво та продаж залізобетонних виробів і конструкцій у Вінниці." />
+  <meta name="twitter:image" content="https://zavodzbvk.pat.ua/Zavod/images/products/bloky-fundamentni.webp" />
   <link rel="canonical" href="https://zavodzbvk.pat.ua/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,8 +55,26 @@
 </head>
 
 <body>
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:sans-serif">
+      <h1>ПрАТ «ОЗ ЗБВіК»</h1>
+      <p>Для повноцінної роботи сайту увімкніть JavaScript у браузері.</p>
+      <p>Телефон: <a href="tel:+380432664643">(0432) 66-46-43</a></p>
+    </div>
+  </noscript>
   <div id="app"></div>
   <script type="module" src="./src/main.ts"></script>
+  <!-- Google Analytics — замініть G-XXXXXXXXXX на свій ID з analytics.google.com -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </body>
 
 </html>

@@ -9,6 +9,16 @@
   margin: 0;
   padding: 0;
 }
+
+/* ===== FOCUS VISIBLE (Accessibility) ===== */
+:focus-visible {
+  outline: 3px solid var(--clr-accent, #e8a63a);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
 :root {
   --clr-primary: #1a3a5c;
   --clr-primary-light: #2d6a9f;
@@ -1244,5 +1254,97 @@ h4 {
   .scroll-top {
     bottom: 20px;
     right: 20px;
+  }
+}
+
+/* ===== SMALL PHONES (≤480px) ===== */
+@media (max-width: 480px) {
+  .container {
+    padding-inline: 12px;
+  }
+  .hero__content {
+    padding: 88px 12px 48px;
+  }
+  .hero__title {
+    font-size: 1.6rem;
+  }
+  .hero__stats {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .hero__stat-num {
+    font-size: 1.4rem;
+  }
+  .hero__stat-label {
+    font-size: 0.68rem;
+  }
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+  }
+  .products__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .product-card {
+    padding: 16px;
+  }
+  .price-tabs {
+    gap: 6px;
+  }
+  .price-tab {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 8px 6px;
+    font-size: 0.82rem;
+  }
+  .footer {
+    padding: 40px 0 20px;
+  }
+  .footer__grid {
+    gap: 24px;
+  }
+  .cta-banner {
+    padding: 36px 16px;
+  }
+  .cta-banner h2 {
+    font-size: 1.3rem;
+  }
+  .section__title {
+    font-size: 1.4rem;
+  }
+}
+
+/* ===== TABLETS / LANDSCAPE (769px – 1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero__content {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 100px 24px 60px;
+  }
+  .products__grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cta-banner {
+    padding: 48px 32px;
+  }
+}
+
+/* ===== LARGE SCREENS (≥1440px) ===== */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1340px;
+  }
+  .products__grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   }
 }

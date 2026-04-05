@@ -1382,7 +1382,7 @@ function render() {
           ${prodCats
             .map(
               (cat, i) => `
-            <div class="product-card animate-on-scroll delay-${(i % 4) + 1}" data-category="${esc(cat.name)}">
+            <div class="product-card animate-on-scroll delay-${(i % 4) + 1}" data-category="${esc(cat.name)}" role="button" tabindex="0" aria-label="${esc(cat.name)} — переглянути прайс">
               <div class="product-card__img">
                 ${
                   cat.image
@@ -1429,9 +1429,9 @@ function render() {
           <table class="price-table" id="priceTable">
             <thead>
               <tr>
-                <th>Марка / найменування</th>
-                <th>Характеристика / розмір</th>
-                <th>Од. виміру</th>
+                <th scope="col">Марка / найменування</th>
+                <th scope="col">Характеристика / розмір</th>
+                <th scope="col">Од. виміру</th>
               </tr>
             </thead>
             <tbody id="priceBody"></tbody>
@@ -1668,6 +1668,12 @@ function initInteractions() {
       document.getElementById('price')?.scrollIntoView({ behavior: 'smooth' })
     })
     ;(card as HTMLElement).style.cursor = 'pointer'
+    card.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault()
+        ;(card as HTMLElement).click()
+      }
+    })
   })
 
   // Scroll top button

@@ -1,0 +1,19 @@
+{
+  "name": "ПрАТ ОЗ ЗБВіК",
+  "short_name": "ОЗ ЗБВіК",
+  "description": "Завод залізобетонних виробів і конструкцій — Вінниця",
+  "start_url": "/Zavod/",
+  "scope": "/Zavod/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#1a3a5c",
+  "lang": "uk",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -884,26 +884,8 @@ h4 {
   overflow: hidden;
 }
 .section--light {
-  background:
-    linear-gradient(135deg, rgba(232, 166, 58, 0.03) 0%, transparent 50%),
-    linear-gradient(rgba(26, 26, 46, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 26, 46, 0.03) 1px, transparent 1px), var(--clr-bg);
-  background-size:
-    100% 100%,
-    40px 40px,
-    40px 40px,
-    100% 100%;
+  background: var(--clr-bg);
   color: var(--clr-text);
-}
-.section--light::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: var(--section-bg-image) center / cover no-repeat;
-  opacity: 0.04;
-  filter: grayscale(1);
-  pointer-events: none;
-  z-index: 0;
 }
 .section--light > * {
   position: relative;
@@ -1304,16 +1286,6 @@ h4 {
   background: linear-gradient(135deg, var(--clr-primary), var(--clr-dark));
   position: relative;
   overflow: hidden;
-}
-.cta::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: var(--section-bg-image) center / cover no-repeat;
-  opacity: 0.06;
-  filter: grayscale(1);
-  pointer-events: none;
-  z-index: 0;
 }
 .cta > * {
   position: relative;

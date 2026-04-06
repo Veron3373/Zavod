@@ -940,7 +940,7 @@ function render() {
     </div>
 
     <!-- ABOUT -->
-    <section class="section section--light" id="about" style="--section-bg-image:url('${heroImages[0]}')">
+    <section class="section section--light" id="about">
       <div class="container">
         <div class="section__header reveal">
           <div class="section__badge">🏭 Про підприємство</div>
@@ -1000,7 +1000,7 @@ function render() {
     </div>
 
     <!-- PRODUCTS -->
-    <section class="section section--light" id="products" style="--section-bg-image:url('${heroImages[1]}')">
+    <section class="section section--light" id="products">
       <div class="container">
         <div class="section__header reveal">
           <div class="section__badge">📦 Наша продукція</div>
@@ -1040,7 +1040,7 @@ function render() {
     </section>
 
     <!-- CTA SECTION -->
-    <section class="cta" style="--section-bg-image:url('${heroImages[0]}')">
+    <section class="cta">
       <div class="cta__bg-shape cta__bg-shape--1"></div>
       <div class="cta__bg-shape cta__bg-shape--2"></div>
       <div class="container">

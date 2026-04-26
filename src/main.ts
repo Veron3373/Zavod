@@ -1050,8 +1050,7 @@ function render() {
       <div class="container">
         <div class="section__header reveal">
           <div class="section__badge">💰 Актуальні ціни</div>
-          <h2 class="section__title">Прайс-лист <span class="section__title-accent">продукції</span></h2>
-          <p class="section__subtitle">Ціни вказані з ПДВ. Для індивідуальної пропозиції зв'яжіться з нами</p>
+          <h2 class="section__title"><span class="section__title-accent">Наша продукція</span></h2>
           <div class="section__line"></div>
         </div>
         <div class="price-tabs reveal" id="priceTabs">

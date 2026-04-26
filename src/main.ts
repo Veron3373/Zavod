@@ -1049,9 +1049,7 @@ function render() {
     <section class="section section--dark" id="price">
       <div class="container">
         <div class="section__header reveal">
-          <div class="section__badge">💰 Актуальні ціни</div>
           <h2 class="section__title"><span class="section__title-accent">Наша продукція</span></h2>
-          <div class="section__line"></div>
         </div>
         <div class="price-tabs reveal" id="priceTabs">
           ${categories

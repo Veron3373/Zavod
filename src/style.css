@@ -962,6 +962,12 @@ h4 {
   margin: 20px auto 0;
 }
 
+#price .section__title-accent {
+  display: inline-block;
+  border-bottom: 3px solid var(--clr-accent);
+  padding-bottom: 6px;
+}
+
 /* ===== ABOUT — BENTO GRID ===== */
 .about-grid {
   display: grid;

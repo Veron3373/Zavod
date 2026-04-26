@@ -1025,11 +1025,6 @@ function render() {
                 <div class="product-card__category">${cat.icon} ${esc(cat.name)}</div>
                 <h3 class="product-card__name">${esc(cat.name)}</h3>
                 <p class="product-card__desc">${esc(cat.desc)}</p>
-                ${
-                  cat.priceFrom !== null
-                    ? `<div class="product-card__price">від ${formatPrice(cat.priceFrom)} <span>/ ${cat.name.includes('Бетон') ? 'м³' : 'шт'}</span></div>`
-                    : `<div class="product-card__price">За запитом</div>`
-                }
               </div>
             </div>
           `,
@@ -1079,7 +1074,6 @@ function render() {
               <tr>
                 <th scope="col">Марка</th>
                 <th scope="col">Характеристика</th>
-                <th scope="col">Од.</th>
               </tr>
             </thead>
             <tbody id="priceBody"></tbody>
@@ -1318,7 +1312,6 @@ function initInteractions() {
       <tr>
         <td><strong>${esc(item.name)}</strong></td>
         <td>${esc(item.spec)}</td>
-        <td>${esc(item.unit)}</td>
       </tr>`,
       )
       .join('')

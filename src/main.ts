@@ -1069,6 +1069,7 @@ function render() {
               <tr>
                 <th scope="col">Марка</th>
                 <th scope="col">Характеристика</th>
+                <th scope="col" class="price-table__unit-col">Од.</th>
               </tr>
             </thead>
             <tbody id="priceBody"></tbody>
@@ -1307,6 +1308,7 @@ function initInteractions() {
       <tr>
         <td><strong>${esc(item.name)}</strong></td>
         <td>${esc(item.spec)}</td>
+        <td class="price-table__unit-col"><span class="price-table__unit-badge">${esc(item.unit)}</span></td>
       </tr>`,
       )
       .join('')

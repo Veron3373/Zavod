@@ -1279,6 +1279,23 @@ h4 {
   color: var(--clr-accent);
   white-space: nowrap;
 }
+.price-table__unit-col {
+  text-align: center;
+  width: 80px;
+  white-space: nowrap;
+}
+.price-table__unit-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(232, 166, 58, 0.12);
+  color: var(--clr-accent);
+  border: 1px solid rgba(232, 166, 58, 0.25);
+}
 
 /* ===== CTA SECTION ===== */
 .cta {

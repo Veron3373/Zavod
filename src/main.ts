@@ -777,11 +777,6 @@ function esc(s: string): string {
   return s.replace(/[&<>"']/g, (c) => escMap[c])
 }
 
-function formatPrice(p: number | null): string {
-  if (p === null) return 'За запитом'
-  return p.toLocaleString('uk-UA') + ' грн'
-}
-
 // ===== HERO IMAGES =====
 const heroImages = [
   assetPath('/images/hero/hero-bg-1.webp'),

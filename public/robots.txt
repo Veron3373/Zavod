@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zavodzbvk.pat.ua/Zavod/sitemap.xml
+Sitemap: https://zbvik.vn.ua/sitemap.xml

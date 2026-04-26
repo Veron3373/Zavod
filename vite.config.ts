@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  base: '/Zavod/',
+  base: '/Zavod/', /* просто / */
   build: {
     target: 'es2020',
     cssMinify: 'lightningcss',
